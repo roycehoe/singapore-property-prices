@@ -1,5 +1,5 @@
+from typing import Callable
 import requests
-import json
 
 from constants import (
     BASE_URL,
@@ -9,9 +9,10 @@ from constants import (
     TOKEN,
     TOTAL_DISTRICTS,
 )
+from utils import write_to_database
 
 
-def _log_district_scrapped_from_website(func):
+def _log_district_scrapped_from_website(func: Callable):
     def wrapper(*args, **kwargs):
         result = func(*args, **kwargs)
         print(f"district scraped: {args[0]}")
@@ -28,19 +29,6 @@ def _get_resale_location_datapoint(district: int) -> list[dict]:
     return response.json()
 
 
-def _get_resale_location_data(total_districts: int = TOTAL_DISTRICTS) -> list[dict]:
-    resale_location_data = []
+def init_resale_location_data(total_districts: int = TOTAL_DISTRICTS) -> None:
     for i in range(1, total_districts):
-        resale_location_data = [
-            *resale_location_data,
-            *_get_resale_location_datapoint(i),
-        ]
-    return resale_location_data
-
-
-def init_resale_location_data(
-    total_districts: int = TOTAL_DISTRICTS, database: str = RESALE_LOCATION_DATA_PATH
-) -> None:
-    resale_location_data = _get_resale_location_data(total_districts)
-    with open(database, "w") as f:
-        f.write(json.dumps(resale_location_data))
+        write_to_database(RESALE_LOCATION_DATA_PATH, _get_resale_location_datapoint(i))
