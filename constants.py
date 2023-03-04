@@ -4,7 +4,7 @@ TOKEN = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMsInVzZXJfaWQiOjMsImVtYW
 BASE_URL = "https://developers.onemap.sg/publicapi/propsvc"
 RESALE_LOCATION_PATH = "retrieve_property_locations_within_district"
 HDB_RESALE_BY_BUILDING_BLOCK_PATH = "getHDBResaleByBuildingBlock"
-PPT_RESALE_BY_LAT_LON_PATH = "getHDBResaleByBuildingBlock"
+PRIVATE_PROPERTY_RESALE_BY_LAT_LON_PATH = "getHDBResaleByBuildingBlock"
 
 RESALE_LOCATION_DEFAULT_PARAMS = "?apartment=true&condo=true&executive_condo=true&executive_hdb=true&five_room_hdb=true&four_room_hdb=true&landed=true&lower_bound_date=20220304&lower_bound_price=0&multi_gen_hdb=true&one_room_hdb=true&three_room_hdb=true&two_room_hdb=true&upper_bound_date=20230304&upper_bound_price=200000000"
 
