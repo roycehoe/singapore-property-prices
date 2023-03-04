@@ -3,8 +3,6 @@ import json
 
 from constants import (
     BASE_URL,
-    HDB_RESALE_BY_BUILDING_BLOCK_PATH,
-    PPT_RESALE_BY_LAT_LON_PATH,
     RESALE_LOCATION_DATA_PATH,
     RESALE_LOCATION_DEFAULT_PARAMS,
     RESALE_LOCATION_PATH,
@@ -13,6 +11,16 @@ from constants import (
 )
 
 
+def _log_district_scrapped_from_website(func):
+    def wrapper(*args, **kwargs):
+        result = func(*args, **kwargs)
+        print(f"district scraped: {args[0]}")
+        return result
+
+    return wrapper
+
+
+@_log_district_scrapped_from_website
 def _get_resale_location_datapoint(district: int) -> list[dict]:
     response = requests.get(
         f"{BASE_URL}/{RESALE_LOCATION_PATH}{RESALE_LOCATION_DEFAULT_PARAMS}&district={district}&token={TOKEN}"
