@@ -9,9 +9,11 @@ from constants import (
     TOKEN,
     TOTAL_DISTRICTS,
 )
+from databases.sqlite import SqliteDB
 from schemas.resale_location import ResaleLocationData
 import models
-from tables.resale_location import SqliteDB
+
+
 from utils import write_to_database
 
 

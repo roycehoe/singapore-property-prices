@@ -10,6 +10,7 @@ requests = "^2.28.2"
 black = "^23.1.0"
 fastapi = "^0.92.0"
 SQLAlchemy = "^2.0.4"
+uvicorn = {extras = ["standard"], version = "^0.20.0"}
 
 [tool.poetry.dev-dependencies]
 
