@@ -9,5 +9,5 @@ from database import engine
 
 models.Base.metadata.create_all(bind=engine)
 
-# init_resale_location_data()
+init_resale_location_data()
 data = get_resale_location_data()

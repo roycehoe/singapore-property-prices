@@ -1,30 +1,30 @@
 from dataclasses import dataclass
+from typing import Any
 from database import SessionLocal
 from schemas.crud import DatabaseCRUD
 from dataclasses import dataclass
 from sqlalchemy.orm import Session
 
 from schemas.resale_location import ResaleLocationData
-from models import PropertyLocation
+from models import ResaleLocation
+import schemas
 
 
 @dataclass
-class ResaleLocationDB(DatabaseCRUD):
+class SqliteDB:
     db: Session = SessionLocal()
 
     def get(self, id):
         raise NotImplementedError
 
-    def get_all(self):
+    def get_all(self, table: Any) -> list[Any]:
         with self.db as session:
-            return session.query(PropertyLocation).all()
+            return session.query(table).all()
 
-    def create(self, new_row: ResaleLocationData) -> ResaleLocationData:
+    def create(self, new_row: Any):
         raise NotImplementedError
 
-    def create_many(
-        self, new_rows: list[ResaleLocationData]
-    ) -> list[ResaleLocationData]:
+    def create_many(self, new_rows: list[Any]) -> list[Any]:
         with self.db as session:
             session.add_all(new_rows)
             session.commit()
